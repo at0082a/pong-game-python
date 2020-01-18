@@ -29,7 +29,7 @@ ball.shapesize(stretch_wid=1, stretch_len=1)
 ball.penup()
 ball.goto(0, 0)
 ball.dx = 2
-ball.dy = 2
+ball.dy = -2
 
 #move paddle a up
 def paddle_a_up():
@@ -63,3 +63,29 @@ wn.onkeypress(paddle_b_down, "p")
 
 while True:
   wn.update()
+
+  #Move Ball
+  ball.setx(ball.xcor() + ball.dx)
+  ball.sety(ball.ycor() + ball.dy)
+
+  #Border Check
+
+  #Top
+  if ball.ycor() > 290:
+    ball.sety(290)
+    ball.dy *= -1
+
+  #Bottom
+  if ball.ycor() < -290:
+    ball.sety(-290)
+    ball.dy *= -1
+
+  #Left
+  if ball.xcor() > 390:
+    ball.goto(0, 0)
+    ball.dx *= -1
+
+  #Right
+  if ball.xcor() < -390:
+    ball.goto(0, 0)
+    ball.dx *= -1
